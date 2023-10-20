@@ -8,4 +8,7 @@ protected:
 public:
 	static int tempid;
 	Entity(std::string name);
+	int getID();
+	std::string getName();
+	void setName(std::string name);
 };

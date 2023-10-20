@@ -6,3 +6,22 @@ Monster::Monster(std::string name, int hp, int maxhp, int strenght, int agility,
 	this->weapon_is = weapon_is;
 	this->weapon = weapon;
 }
+
+int Monster::getMana() {
+	return this->mana;
+};
+void Monster::setMana(int mana) {
+	this->mana = mana;
+};
+bool Monster::getWeaponState() {
+	return this->weapon_is;
+};
+void Monster::setWeaponState(bool state) {
+	this->weapon_is = weapon_is;
+};
+Weapon Monster::getWeapon() {
+	return this->weapon;
+};
+void Monster::setWeapon(Weapon weapon) {
+	this->weapon = weapon;
+};
