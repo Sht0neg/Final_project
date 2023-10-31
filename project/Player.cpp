@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <string>
 
-Player::Player(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int weight, int exp, int mana, Weapon* weapon, int intelligence, int stamina) : Character(name, hp, maxhp, strenght, agility, level, damage) {
+Player::Player(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int weight, int exp, int mana, Weapon* weapon, int intelligence, int stamina, int balance, Armor* armor) : Character(name, hp, maxhp, strenght, agility, level, damage) {
 	this->weight = weight;
 	this->exp = exp;
 	this->mana = mana;
@@ -9,6 +9,8 @@ Player::Player(std::string name, int hp, int maxhp, int strenght, int agility, i
 	this->intelligence = intelligence;
 	this->stamina = stamina;
 	this->maxstamina = stamina;
+	this->balance = balance;
+	this->armor = armor;
 };
 
 int Player::getWeight() {
@@ -52,4 +54,16 @@ int Player::getMaxstamina() {
 };
 void Player::setMaxstamina(int maxstamina) {
 	this->maxstamina = maxstamina;
+};
+int Player::getBalance() {
+	return this->balance;
+};
+void Player::setBalance(int balance) {
+	this->balance = balance;
+};
+Armor* Player::getArmor() {
+	return this->armor;
+};
+void Player::setArmor(Armor* armor) {
+	this->armor = armor;
 };

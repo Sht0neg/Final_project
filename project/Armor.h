@@ -4,7 +4,7 @@
 
 class Armor : public Entity {
 private:
-	int armor;//единица брони
+	int armor;//защита
 	int durability;//прочность
 	int weight;//вес
 	int price;
