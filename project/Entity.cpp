@@ -12,10 +12,10 @@ void Entity::setName(std::string name) {
 	this->name = name;
 };
 
-Entity::Entity(std::string name) {
+Entity::Entity(std::string name)
 {
 	this->tempid++;
 	this->id = tempid;
 	this->name = name;
-}
+};
 

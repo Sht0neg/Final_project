@@ -9,10 +9,24 @@ private:
 	int weight;
 	int exp;
 	int mana;
-	Weapon weapon;
-	int intelegance;
+	Weapon* weapon;
+	int intelligence;
 	int stamina;
 	int maxstamina;
 public:
-	Player(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int weight, int exp, int mana, Weapon weapon, int intelegance, int stamina);
+	Player(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int weight, int exp, int mana, Weapon* weapon, int intelligence, int stamina);
+	int getWeight();
+	void setWeight(int weight);
+	int getExp();
+	void setExp(int exp);
+	int getMana();
+	void setMana(int mana);
+	Weapon* getWeapon();
+	void setWeapon(Weapon* weapon);
+	int getIntelligence();
+	void setIntelligence(int intelligence);
+	int getStamina();
+	void setStamina(int stamina);
+	int getMaxstamina();
+	void setMaxstamina(int maxstamina);
 };

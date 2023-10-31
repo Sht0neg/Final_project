@@ -8,8 +8,9 @@ private:
 	int durability;//прочность
 	int weight;//вес
 	std::string type;//дальность атаки
+	int price;//цeна
 public:
-	Weapon(std::string name, int damage, int durability, int weight, std::string type);
+	Weapon(std::string name, int damage, int durability, int weight, std::string type, int price);
 
 	void print();
 
@@ -24,4 +25,7 @@ public:
 
 	std::string getType();
 	void setType(std::string type);
+
+	int getPrice();
+	void setPrice(int price);
 };
