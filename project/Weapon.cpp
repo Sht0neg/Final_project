@@ -42,3 +42,10 @@ void  Weapon::setMaxDurability(int maxdurability) {
 		this->maxdurability = -1 * durability;
 	}
 };
+
+std::string Weapon::getType() {
+	return this->type;
+};
+void Weapon::setType(std::string type) {
+	this->type = type;
+};
