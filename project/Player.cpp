@@ -1,35 +1,57 @@
 #include "Player.h"
 #include <string>
 
-Player::Player(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int weight, int exp, int mana, Weapon* weapon, int intelligence, int stamina, int balance, Armor* armor) : Character(name, hp, maxhp, strenght, agility, level, damage) {
-	this->weight = weight;
-	this->exp = exp;
-	this->mana = mana;
+Player::Player(std::string name, int hp, int strenght, int agility, int level, int damage, int weight, int exp, Weapon* weapon, int intelligence, int balance, Armor* armor, Artifact* artifact) : Character(name, hp, strenght, agility, level, damage) {
+	if (weight > 0) {
+		this->weight = weight;
+	}
+	else {
+		this->weight = -1 * weight;
+	}
+	if (exp > 0) {
+		this->exp = exp;
+	}
+	else {
+		this->exp = -1 * exp;
+	}
+	if (intelligence > 0) {
+		this->intelligence = intelligence;
+	}
+	else {
+		this->intelligence = -1 * intelligence;
+	}
+	if (balance > 0) {
+		this->balance = balance;
+	}
+	else {
+		this->balance = -1 * balance;
+	}
 	this->weapon = weapon;
-	this->intelligence = intelligence;
-	this->stamina = stamina;
-	this->maxstamina = stamina;
-	this->balance = balance;
 	this->armor = armor;
+	this->artifact = artifact;
 };
 
 int Player::getWeight() {
 	return this->weight;
 };
 void Player::setWeight(int weight) {
-	this->weight = weight;
+	if (weight > 0) {
+		this->weight = weight;
+	}
+	else {
+		this->weight = -1 * weight;
+	}
 };
 int Player::getExp() {
 	return this->exp;
 };
 void Player::setExp(int exp) {
-	this->exp = exp;
-};
-int Player::getMana() {
-	return this->mana;
-};
-void Player::setMana(int mana) {
-	this->mana = mana;
+	if (exp > 0) {
+		this->exp = exp;
+	}
+	else {
+		this->exp = -1 * exp;
+	}
 };
 Weapon* Player::getWeapon() {
 	return this->weapon;
@@ -41,25 +63,23 @@ int Player::getIntelligence() {
 	return this->intelligence;
 };
 void Player::setIntelligence(int intelligence) {
-	this->intelligence = intelligence;
-};
-int Player::getStamina() {
-	return this->stamina;
-};
-void Player::setStamina(int stamina) {
-	this->stamina = stamina;
-};
-int Player::getMaxstamina() {
-	return this->maxstamina;
-};
-void Player::setMaxstamina(int maxstamina) {
-	this->maxstamina = maxstamina;
+	if (intelligence > 0) {
+		this->intelligence = intelligence;
+	}
+	else {
+		this->intelligence = -1 * intelligence;
+	}
 };
 int Player::getBalance() {
 	return this->balance;
 };
 void Player::setBalance(int balance) {
-	this->balance = balance;
+	if (balance > 0) {
+		this->balance = balance;
+	}
+	else {
+		this->balance = -1 * balance;
+	}
 };
 Armor* Player::getArmor() {
 	return this->armor;
@@ -67,3 +87,9 @@ Armor* Player::getArmor() {
 void Player::setArmor(Armor* armor) {
 	this->armor = armor;
 };
+Artifact* Player::getArtifact() {
+	return this->artifact;
+}
+void Player::setArtifact(Artifact* artifact) {
+	this->artifact = artifact;
+}

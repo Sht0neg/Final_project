@@ -11,7 +11,7 @@ protected:
 	int level;
 	int damage;
 public:
-	Character(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage);
+	Character(std::string name, int hp, int strenght, int agility, int level, int damage);
 	int getHP();
 	void setHP(int hp);
 	int getMAXHP();
