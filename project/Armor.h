@@ -1,27 +1,19 @@
 #pragma once
 #include <string>
-#include "Entity.h"
+#include "Item.h"
 
-class Armor : public Entity {
+class Armor : public Item {
 private:
-	int armor;//защита
 	int durability;//прочность
-	int weight;//вес
-	int price;
+	int maxdurability;
 public:
-	Armor(int armor, int durability, int weight, int price);
+	Armor(std::string name, int value, int durability, int weight, int price);
 
 	void print();
-
-	int getArmor();
-	void setArmor(int armor);
 
 	int getDurability();
 	void setDurability(int durability);
 
-	int getWeight();
-	void setWeight(int weight);
-
-	int getPrice();
-	void setPrice(int price);
+	int getMaxDurability();
+	void setMaxDurability(int maxdurability);
 };
