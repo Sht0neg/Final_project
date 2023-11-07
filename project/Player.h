@@ -4,6 +4,7 @@
 #include <string>
 #include "Armor.h"
 #include "Artifact.h"
+#include "Monster.h"
 
 class Player : public Character {
 private:
@@ -30,4 +31,5 @@ public:
 	void setArmor(Armor* armor);
 	Artifact* getArtifact();
 	void setArtifact(Artifact* artifact);
+	void fight(Monster* monster, Weapon* sword);
 };

@@ -14,8 +14,14 @@ Weapon::Weapon(std::string name, int value, int durability, int weight, std::str
 	this->type = type;
 }
 
+Weapon::Weapon() {
+	this->durability = 0;
+	this->maxdurability = 0;
+	this->type = "";
+}
+
 void Weapon::print() {
-	std::cout << "Урон: " << this->value << "; Прочность: " << this->durability << "; Вес: " << this->weight << "; Тип атаки: " << this->type << "; Цена: " << this->price;
+	std::cout << "\nID: " << this->id << "; Название: " << this->name << "; Урон: " << this->value << "; Прочность: " << this->durability << "; Вес: " << this->weight << "; Тип атаки: " << this->type << "; Цена: " << this->price;
 }
 
 

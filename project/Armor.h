@@ -8,6 +8,7 @@ private:
 	int maxdurability;
 public:
 	Armor(std::string name, int value, int durability, int weight, int price);
+	Armor();
 
 	void print();
 

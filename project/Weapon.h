@@ -9,6 +9,7 @@ private:
 	std::string type;//дальность атаки
 public:
 	Weapon(std::string name, int value, int durability, int weight, std::string type, int price);
+	Weapon();
 
 	void print();
 

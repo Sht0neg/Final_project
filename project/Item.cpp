@@ -22,6 +22,12 @@ Item::Item(std::string name, int value, int weight, int price) : Entity(name) {
 	}
 }
 
+Item::Item() : Entity() {
+	this->value = 0;
+	this->weight = 0;
+	this->price = 0;
+}
+
 int Item::getValue() {
 	return this->value;
 };

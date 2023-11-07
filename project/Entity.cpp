@@ -19,3 +19,9 @@ Entity::Entity(std::string name)
 	this->name = name;
 };
 
+Entity::Entity()
+{
+	this->tempid++;
+	this->id = tempid;
+	this->name = "";
+};

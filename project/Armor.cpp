@@ -13,6 +13,10 @@ Armor::Armor(std::string name, int value, int durability, int weight, int price)
 	}
 }
 
+Armor::Armor(){
+	this->durability = 0;
+}
+
 void Armor::print() {
 	std::cout << "Единиц брони: " << this->value << "; Прочность: " << this->durability << "; Вес: " << this->weight << "; Цена: " << this->price;
 }

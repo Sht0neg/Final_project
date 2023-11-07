@@ -8,6 +8,8 @@ protected:
 	int price;
 	int value;
 	Item(std::string name, int value, int weight, int price);
+	Item();
+public:
 	int getValue();
 	void setValue(int value);
 
