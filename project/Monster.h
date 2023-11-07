@@ -5,15 +5,16 @@
 
 class Monster : public Character {
 private:
-	int mana;
+	int exp;
 	bool weapon_is;
 	Weapon* weapon;
 public:
-	Monster(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int mana, bool weapon_is, Weapon* weapon);
-	int getMana();
-	void setMana(int mana);
+	Monster(std::string name, int hp, int strenght, int agility, int level, int damage, Weapon* weapon, int exp);
+	Monster(std::string name, int hp, int strenght, int agility, int level, int damage, int exp);
 	bool getWeaponState();
 	void setWeaponState(bool state);
 	Weapon* getWeapon();
 	void setWeapon(Weapon* weapon);
+	int getExp();
+	void setExp(int exp);
 };

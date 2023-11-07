@@ -1,18 +1,28 @@
 #include "Monster.h"
 #include <string>
+#include "Weapon.h"
 
-Monster::Monster(std::string name, int hp, int maxhp, int strenght, int agility, int level, int damage, int mana, bool weapon_is, Weapon* weapon) : Character(name, hp, maxhp, strenght, agility, level, damage) {
-	this->mana = mana;
-	this->weapon_is = weapon_is;
+Monster::Monster(std::string name, int hp, int strenght, int agility, int level, int damage, Weapon* weapon, int exp) : Character(name, hp, strenght, agility, level, damage) {
+	if (exp > 0) {
+		this->exp = exp;
+	}
+	else {
+		this->exp = -1 * exp;
+	}
+	this->weapon_is = true;
 	this->weapon = weapon;
 }
 
-int Monster::getMana() {
-	return this->mana;
-};
-void Monster::setMana(int mana) {
-	this->mana = mana;
-};
+Monster::Monster(std::string name, int hp, int strenght, int agility, int level, int damage, int exp) : Character(name, hp, strenght, agility, level, damage) {
+	if (exp > 0) {
+		this->exp = exp;
+	}
+	else {
+		this->exp = -1 * exp;
+	}
+	this->weapon_is = false;
+}
+
 bool Monster::getWeaponState() {
 	return this->weapon_is;
 };
@@ -24,4 +34,15 @@ Weapon* Monster::getWeapon() {
 };
 void Monster::setWeapon(Weapon* weapon) {
 	this->weapon = weapon;
+};
+int Monster::getExp() {
+	return this->exp;
+};
+void Monster::setExp(int exp) {
+	if (exp > 0) {
+		this->exp = exp;
+	}
+	else {
+		this->exp = -1 * exp;
+	}
 };
