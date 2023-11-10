@@ -114,8 +114,8 @@ void Player::fight(Monster* monster, Weapon* sword) {
 		int choice_in_fight;
 		bool fight_state = true;
 		while (fight_state) {
-			this->weapon->repair(this);
-			this->armor->repair(this);
+			this->weapon->repair(*this);
+			this->armor->repair(*this);
 			if (this->weapon->getType() == "Heal") {
 				std::cout << "Если вы хотите ударить противника, введите 0, если хотите использовать руну регенерации, введите 2" << std::endl;
 			}
