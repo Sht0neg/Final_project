@@ -44,3 +44,26 @@ void Armor::setMaxDurability(int maxdurability) {
 		this->maxdurability = -1 * durability;
 	}
 };
+
+void Armor::repair(Player* player) {
+	if (this->durability < this->maxdurability) {
+		int change;
+		std::cout << "¬ы можете починить броню, 2 единица прочности = 1 монета, если хотите это сделать введите 1, если не хотите, введите любое другое число\n";
+		std::cout << "¬ случае достижени€ прочностью брони 0, она не будет давать бонусов к защите\n";
+		std::cin >> change;
+		if (change == 1) {
+			int maxdurab = this->maxdurability - this->durability;
+			if (player->getBalance() >= maxdurab / 2) {
+				this->durability += maxdurab;
+				player->setBalance(player->getBalance() - maxdurab / 2);
+			}
+			else {
+				int durab = player->getBalance() * 2;
+				this->durability += durab;
+				player->setBalance(0);
+			}
+			std::cout << "¬аш баланс: " << player->getBalance() << std::endl;
+			std::cout << "ѕрочность брони: " << this->durability << " / " << this->maxdurability << std::endl;
+		}
+	}
+}

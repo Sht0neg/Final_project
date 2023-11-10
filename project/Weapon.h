@@ -22,4 +22,5 @@ public:
 	int getMaxDurability();
 	void setMaxDurability(int maxdurability);
 
+	void repair(Player* player);
 };

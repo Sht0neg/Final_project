@@ -24,11 +24,11 @@ Weapon* bow2 = new Weapon("Арбалет", 32, 130, 1200, "Дальний бо�
 
 
 
-Artifact* artifact1 = new Artifact("Руна регенерации", "Heal", 5, 20, 15);
+Artifact* artifact1 = new Artifact("Руна регенерации", "Heal", 5, 20, 250);
 
-Artifact* artifact2 = new Artifact("Руна здоровья", "HP", 3, 30, 25);
+Artifact* artifact2 = new Artifact("Руна здоровья", "HP", 3, 30, 75);
 
-Artifact* artifact3 = new Artifact("Руна силы", "Damage", 30, 40, 40);
+Artifact* artifact3 = new Artifact("Руна силы", "Damage", 30, 40, 90);
 
 
 

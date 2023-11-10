@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Item.h"
+#include "Player.h"
 
 class Armor : public Item {
 private:
@@ -17,4 +18,6 @@ public:
 
 	int getMaxDurability();
 	void setMaxDurability(int maxdurability);
+
+	void repair(Player* player);
 };

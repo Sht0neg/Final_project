@@ -97,10 +97,10 @@ void Player::setArtifact(Artifact* artifact) {
 
 void Player::fight(Monster* monster, Weapon* sword) {
 	if (this->weapon->getType() == "HP") {
-		this->maxhp = this->maxhp + this->maxhp * this->artifact->getValue();
+		this->maxhp += this->maxhp * this->artifact->getValue();
 	}
 	else if (this->weapon->getType() == "Damage") {
-		this->damage = this->damage + this->damage * this->artifact->getValue();
+		this->damage += this->damage * this->artifact->getValue();
 	}
 	int choice;
 	std::cout << "Если вы хотите начать сражение, введите 0, если хотите пройти мимо противника введите любое другое число" << std::endl;
@@ -114,6 +114,8 @@ void Player::fight(Monster* monster, Weapon* sword) {
 		int choice_in_fight;
 		bool fight_state = true;
 		while (fight_state) {
+			this->weapon->repair(this);
+			this->armor->repair(this);
 			if (this->weapon->getType() == "Heal") {
 				std::cout << "Если вы хотите ударить противника, введите 0, если хотите использовать руну регенерации, введите 2" << std::endl;
 			}
@@ -138,19 +140,33 @@ void Player::fight(Monster* monster, Weapon* sword) {
 			}
 			std::cout << "Ваши хп: " << this->hp << ", хп монстра: " << monster->getHP() << std::endl;
 			if (monster->getWeaponState()) {
-				this->hp = this->hp - monster->getDamage() - monster->getWeapon()->getValue();
-				std::cout << "Удар противника нанёс вам " << monster->getDamage() + monster->getWeapon()->getValue() << " урона\n";
+				this->hp = this->hp - (monster->getDamage() + monster->getWeapon()->getValue()) / 100 * (100 - this->armor->getValue());
+				std::cout << "Удар противника нанёс вам " << (monster->getDamage() + monster->getWeapon()->getValue()) / 100 * (100 - this->armor->getValue()) << " урона\n";
 			}
 			else {
-				this->hp = this->hp - monster->getDamage();
-				std::cout << "Удар противника нанёс вам " << monster->getDamage() << " урона\n";
+				this->hp = this->hp - monster->getDamage() / 100 * (100 - this->armor->getValue());
+				std::cout << "Удар противника нанёс вам " << monster->getDamage() / 100 * (100 - this->armor->getValue()) << " урона\n";
 			}
 			std::cout << "Ваши хп: " << this->hp << ", хп монстра: " << monster->getHP() << std::endl;
-			if (this->hp < monster->getDamage()) {
+			if (this->hp < (monster->getDamage() + monster->getWeapon()->getValue()) / 100 * (100 - this->armor->getValue())) {
 				std::cout << "Вы погибли, ваша броня, оружие и артефакт были утеряны, однако было возвращено 50% их стоимости\n";
 				this->weapon = sword;
 				this->armor = new Armor();
 				this->artifact = new Artifact();
+				this->balance += this->armor->getPrice() / 2 + this->armor->getPrice() / 2 + this->artifact->getPrice() / 2;
+				fight_state = false;
+			}
+			else if (monster->getHP() < this->damage + this->weapon->getValue()) {
+				std::cout << "Вы победили, вам было начислено: " << monster->getExp() << " опыта\n";
+				this->exp += monster->getExp();
+				this->level = this->exp / 10;
+				fight_state = false;
+			}
+			if (this->weapon->getType() == "HP") {
+				this->maxhp -= this->maxhp * this->artifact->getValue();
+			}
+			else if (this->weapon->getType() == "Damage") {
+				this->damage -= this->damage * this->artifact->getValue();
 			}
 		}
 	}
