@@ -6,6 +6,10 @@
 #include "Weapon.h"
 #include "Player.h"
 
+void buy_sale_weapon(Player* player);
+void buy_sale_artifact(Player* player);
+void buy_sale_armor(Player* player);
+
 Weapon* sword1 = new Weapon("Железный меч", 12, 80, 1000, "Ближний бой", 70);
 
 Weapon* sword2 = new Weapon("Катаны дайто", 50, 65, 800, "Ближний бой", 90);
