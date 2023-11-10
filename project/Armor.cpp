@@ -18,7 +18,7 @@ Armor::Armor(){
 }
 
 void Armor::print() {
-	std::cout << "Единиц брони: " << this->value << "; Прочность: " << this->durability << "; Вес: " << this->weight << "; Цена: " << this->price;
+	std::cout << "\nID: " << this->id << "\n\tНазвание: " << this->name << "\n\tПроцент поглощения урона: " << this->value << "\n\tПрочность: " << this->durability << " / " << this->maxdurability << "\n\tВес: " << this->weight << "\n\tЦена: " << this->price << std::endl;
 }
 
 int Armor::getDurability() {
