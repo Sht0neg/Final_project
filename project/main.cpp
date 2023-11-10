@@ -24,11 +24,11 @@ Weapon* bow2 = new Weapon("Арбалет", 32, 130, 1200, "Дальний бо�
 
 
 
-Artifact* artifact1 = new Artifact("Руна регенерации", "Heal", 5, 20, 250);
+Artifact* artifact1 = new Artifact("Руна регенерации", "Heal", 5, 20, 15);
 
-Artifact* artifact2 = new Artifact("Руна здоровья", "HP", 3, 30, 75);
+Artifact* artifact2 = new Artifact("Руна здоровья", "HP", 3, 30, 25);
 
-Artifact* artifact3 = new Artifact("Руна силы", "Damage", 30, 40, 90);
+Artifact* artifact3 = new Artifact("Руна силы", "Damage", 30, 40, 40);
 
 
 
@@ -54,18 +54,57 @@ Monster* monster6 = new Monster("Виверна", 110, 10, 12, 6, 25, 8);
 
 Monster* monster7 = new Monster("Дракон", 200, 23, 30, 7, 30, 25);
 
+
 using namespace std;
 int main()
 {
+	string name;
+	cout << "Придумайте имя героя: ";
+	cin >> name;
+	Player* player = new Player(name, 100, 0, 0, 0, 5, 4240, 0, sword1, 0, 30, new Armor(), new Artifact());
 
+	while (true) {
+		int n;
+		cout << "1)Пройти на поле боя; 2)Купить или продать вещи; 3)Выход.";
+		cin >> n;
+		if (n == 1) {
 
+		}
+		else if (n == 2) {
+			while (true) {
+				int c;
+				cout << "1)Оружеи; 2)Броня; 3)Руны; 4)Выйти.";
+				cin >> c;
+				if (c == 1) {
+					buy_sale_weapon(player);
+				}
+				else if (c == 2) {
+					buy_sale_armor(player);
+				}
+				else if (c == 3) {
+					buy_sale_artifact(player);
+				}
+				else if (c == 4) {
+					cout << "Вы вышли с магазина";
+					break;
+				}
+				else {
+					cout << "Неправильный ввод";
+				}
+			}
+		}
+		else if (n == 3) {
+			cout << "Вы вышли с игры";
+			break;
+		}
+	}
 }
 
 void buy_sale_weapon(Player* player) {
 	int a;
+	cout << "Ваш баланс: " << player->getBalance();
 	cout << "Купить оружие - 1, продать оружие - 2: ";
 	cin >> a;
-	cout << "Ваш баланс: " << player->getBalance();
 	if (a == 1) {
 		int n;
 		cout << "Оружия, которые можно купить:";
@@ -295,5 +334,3 @@ void buy_sale_armor(Player* player) {
 		}
 	}
 }
-
-
