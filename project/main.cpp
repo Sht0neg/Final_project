@@ -5,6 +5,8 @@
 #include "Monster.h"
 #include "Weapon.h"
 #include "Player.h"
+#include <random>
+#include <time.h>
 
 void buy_sale_weapon(Player* player);
 void buy_sale_artifact(Player* player);
@@ -40,19 +42,19 @@ Armor* armor3 = new Armor("Броня короля драконов", 60, 500, 3
 
 
 
-Monster* monster1 = new Monster("Гоблин", 50, 3, 3, 1, 7, 2);
+Monster* monster1 = new Monster("Гоблин", 50, 3, 3, 1, 7, 2); // 45
 
-Monster* monster2 = new Monster("Кентавр", 75, 6, 4, 2, 10, 3);
+Monster* monster2 = new Monster("Кентавр", 75, 6, 4, 2, 10, 3); // 30
 
-Monster* monster3 = new Monster("Разбойник", 55, 4, 6, 3, 0, bow2, 4);
+Monster* monster3 = new Monster("Разбойник", 55, 4, 6, 3, 0, bow2, 4); // 40 
 
-Monster* monster4 = new Monster("Колдун", 60, 4, 4, 4, 14, 5);
+Monster* monster4 = new Monster("Колдун", 60, 4, 4, 4, 14, 5); // 25
 
-Monster* monster5 = new Monster("Фантом", 65, 5, 14, 5, 20, 7);
+Monster* monster5 = new Monster("Фантом", 65, 5, 14, 5, 20, 7); // 20
 
-Monster* monster6 = new Monster("Виверна", 110, 10, 12, 6, 25, 8);
+Monster* monster6 = new Monster("Виверна", 110, 10, 12, 6, 25, 8); // 10
 
-Monster* monster7 = new Monster("Дракон", 200, 23, 30, 7, 30, 25);
+Monster* monster7 = new Monster("Дракон", 200, 23, 30, 7, 30, 25); // 5
 
 
 using namespace std;
@@ -68,7 +70,38 @@ int main()
 		cout << "1)Пройти на поле боя; 2)Купить или продать вещи; 3)Выход.";
 		cin >> n;
 		if (n == 1) {
-
+			while (true) {
+				srand(time(0));
+				int random = rand() % 250 + 0;
+				if (random <= 45) {
+					player->fight(monster1, sword1);
+				}
+				else if (random > 45 && random <= 75) {
+					player->fight(monster2, sword1);
+				}
+				else if (random > 75 && random <= 115) {
+					player->fight(monster3, sword1);
+				}
+				else if (random > 115 && random <= 140) {
+					player->fight(monster4, sword1);
+				}
+				else if (random > 140 && random <= 160) {
+					player->fight(monster5, sword1);
+				}
+				else if (random > 160 && random <= 170) {
+					player->fight(monster6, sword1);
+				}
+				else if (random > 170 && random <= 175) {
+					player->fight(monster7, sword1);
+				}
+				else {
+					if (player->getHP() != player->getMAXHP()) {
+						player->setHP(player->getHP() + player->getMAXHP() / 100 * 10);
+					}
+					cout << "Вы не наткнулись на монстра, а нашли красивое место!\n";
+					cout << "Ваши хп: " << player->getHP() << endl;
+				}
+			}
 		}
 		else if (n == 2) {
 			while (true) {
@@ -117,6 +150,7 @@ void buy_sale_weapon(Player* player) {
 			if (player->getBalance() >= sword2->getPrice()) {
 				player->setBalance(player->getBalance() - sword2->getPrice());
 				player->setWeapon(sword2);
+				player->setBalance(player->getBalance() + player->getWeapon()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 			}
 			else {
@@ -127,6 +161,7 @@ void buy_sale_weapon(Player* player) {
 			if (player->getBalance() >= sword3->getPrice()) {
 				player->setBalance(player->getBalance() - sword3->getPrice());
 				player->setWeapon(sword3);
+				player->setBalance(player->getBalance() + player->getWeapon()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 			}
 			else {
@@ -137,6 +172,7 @@ void buy_sale_weapon(Player* player) {
 			if (player->getBalance() >= bow1->getPrice()) {
 				player->setBalance(player->getBalance() - bow1->getPrice());
 				player->setWeapon(bow1);
+				player->setBalance(player->getBalance() + player->getWeapon()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 			}
 			else {
@@ -156,32 +192,32 @@ void buy_sale_weapon(Player* player) {
 			cout << "Введите ID оружия: ";
 			cin >> n;
 			if (n == sword1->getID() && player->getWeapon()->getID() == sword1->getID()) {
-				player->setBalance(player->getBalance() + sword1->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + sword1->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
 			else if (n == sword2->getID() && player->getWeapon()->getID() == sword2->getID()) {
-				player->setBalance(player->getBalance() + sword2->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + sword2->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
 			else if (n == sword3->getID() && player->getWeapon()->getID() == sword3->getID()) {
-				player->setBalance(player->getBalance() + sword3->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + sword3->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
 			else if (n == sword4->getID() && player->getWeapon()->getID() == sword4->getID()) {
-				player->setBalance(player->getBalance() + sword4->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + sword4->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
 			else if (n == bow1->getID() && player->getWeapon()->getID() == bow1->getID()) {
-				player->setBalance(player->getBalance() + bow1->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + bow1->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
 			else if (n == bow2->getID() && player->getWeapon()->getID() == bow1->getID()) {
-				player->setBalance(player->getBalance() + bow2->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + bow2->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setWeapon(new Weapon());
 			}
@@ -209,6 +245,7 @@ void buy_sale_artifact(Player* player) {
 			if (player->getBalance() >= artifact1->getPrice()) {
 				player->setBalance(player->getBalance() - artifact1->getPrice());
 				player->setArtifact(artifact1);
+				player->setBalance(player->getBalance() + player->getArtifact()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 			}
 			else {
@@ -218,6 +255,7 @@ void buy_sale_artifact(Player* player) {
 		else if (n == artifact2->getID()) {
 			if (player->getBalance() >= artifact2->getPrice()) {
 				player->setBalance(player->getBalance() - artifact2->getPrice());
+				player->setBalance(player->getBalance() + player->getArtifact()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArtifact(artifact2);
 			}
@@ -248,18 +286,18 @@ void buy_sale_artifact(Player* player) {
 			cout << "Введите ID руны: ";
 			cin >> n;
 			if (n == artifact1->getID() && player->getArtifact()->getID() == artifact1->getID()) {
-				player->setBalance(player->getBalance() + artifact1->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + artifact1->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArtifact(new Artifact());
 
 			}
 			else if (n == artifact2->getID() && player->getArtifact()->getID() == artifact2->getID()) {
-				player->setBalance(player->getBalance() + artifact2->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + artifact2->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArtifact(new Artifact());
 			}
 			else if (n == artifact3->getID() && player->getArtifact()->getID() == artifact3->getID()) {
-				player->setBalance(player->getBalance() + artifact3->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + artifact3->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArtifact(new Artifact());
 			}
@@ -286,6 +324,7 @@ void buy_sale_armor(Player* player) {
 			if (player->getBalance() >= armor1->getPrice()) {
 				player->setBalance(player->getBalance() - armor1->getPrice());
 				player->setArmor(armor1);
+				player->setBalance(player->getBalance() + player->getArmor()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 			}
 			else {
@@ -295,6 +334,7 @@ void buy_sale_armor(Player* player) {
 		else if (n == armor2->getID()) {
 			if (player->getBalance() >= armor2->getPrice()) {
 				player->setBalance(player->getBalance() - armor2->getPrice());
+				player->setBalance(player->getBalance() + player->getArmor()->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArmor(armor2);
 			}
@@ -314,17 +354,17 @@ void buy_sale_armor(Player* player) {
 			cout << "Введите ID брони: ";
 			cin >> n;
 			if (n == armor1->getID() && player->getArmor()->getID() == armor1->getID()) {
-				player->setBalance(player->getBalance() + armor1->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + armor1->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArmor(new Armor());
 			}
 			else if (n == armor2->getID() && player->getArmor()->getID() == armor2->getID()) {
-				player->setBalance(player->getBalance() + armor2->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + armor2->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArmor(new Armor());
 			}
 			else if (n == armor3->getID() && player->getArmor()->getID() == armor3->getID()) {
-				player->setBalance(player->getBalance() + armor3->getPrice() * 0.9);
+				player->setBalance(player->getBalance() + armor3->getPrice() / 100 * 90);
 				cout << "Ваш баланс: " << player->getBalance();
 				player->setArmor(new Armor());
 			}

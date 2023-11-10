@@ -57,7 +57,7 @@ void Weapon::setType(std::string type) {
 	this->type = type;
 };
 
-void Weapon::repair(Player* player) {
+void Weapon::repair(Player& player) {
 	if (this->durability < this->maxdurability) {
 		int change;
 		if (this->durability == 0) {
@@ -70,16 +70,16 @@ void Weapon::repair(Player* player) {
 		std::cin >> change;
 		if (change == 1) {
 			int maxdurab = this->maxdurability - this->durability;
-			if (player->getBalance() >= maxdurab / 2) {
+			if (player.getBalance() >= maxdurab / 2) {
 				this->durability += maxdurab;
-				player->setBalance(player->getBalance() - maxdurab / 2);
+				player.setBalance(player.getBalance() - maxdurab / 2);
 			}
 			else {
-				int durab = player->getBalance() * 2;
+				int durab = player.getBalance() * 2;
 				this->durability += durab;
-				player->setBalance(0);
+				player.setBalance(0);
 			}
-			std::cout << "Ваш баланс: " << player->getBalance() << std::endl;
+			std::cout << "Ваш баланс: " << player.getBalance() << std::endl;
 			std::cout << "Прочность оружия: " << this->durability << " / " << this->maxdurability << std::endl;
 		}
 	}

@@ -154,6 +154,7 @@ void Player::fight(Monster* monster, Weapon* sword) {
 				this->armor = new Armor();
 				this->artifact = new Artifact();
 				this->balance += this->armor->getPrice() / 2 + this->armor->getPrice() / 2 + this->artifact->getPrice() / 2;
+				this->hp = maxhp;
 				fight_state = false;
 			}
 			else if (monster->getHP() < this->damage + this->weapon->getValue()) {
